@@ -19,15 +19,13 @@ function DnD(canvas, interactor) {
   }
 
   DnD.prototype.Move = function (evt){
-    if(this.pressed === true){
+    if(this.pressed){
       this.endX = evt.x;
       this.endY = evt.y;
     }
   }
 
   DnD.prototype.Release = function (evt){
-    this.endX = evt.x;
-    this.endY = evt.y;
     this.pressed = false;
     console.log("Stop : " + this.endX + " : " + this.endY);
   }

@@ -3,14 +3,14 @@
 // N'oubliez pas l'héritage !
 
 
-function Shape(c, s){
-    this.couleur = c;
+function Shape(s, c){
+    this.color = c;
     this.size = s;
 
 }
 
-function Rectangle(PtX , PtY , width, height , color, size){
-    Shape.call(this , color , size);
+function Rectangle(PtX , PtY , width, height , size, color){
+    Shape.call(this , size , color);
     this.PtX = PtX;
     this.PtY = PtY;
     this.width = width;
@@ -18,8 +18,8 @@ function Rectangle(PtX , PtY , width, height , color, size){
 }
 Rectangle.prototype = new Shape();
 
-function Line(startX , startY , endX, endY, color , size){
-    Shape.call(this , color , size);
+function Line(startX , startY , endX, endY, size , color){
+    Shape.call(this , size , color);
     this.startX = startX;
     this.startY = startY;
     this.endX = endX;
@@ -34,6 +34,9 @@ function Drawing() {
         this.listForme.push(shape);
     }
 
+    Drawing.prototype.getShapes = function(){
+        return this.listForme;
+    }
 
 
 }
