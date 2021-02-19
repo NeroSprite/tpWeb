@@ -3,6 +3,11 @@
 // L'interacteur viendra dans un second temps donc ne vous en souciez pas au départ.
 function DnD(canvas, interactor) {
 	// Définir ici les attributs de la 'classe'
+  var startX;
+  var startY;
+  var endX;
+  var endY;
+
 
 	// Developper les 3 fonctions gérant les événements
 
