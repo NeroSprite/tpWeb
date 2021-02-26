@@ -3,7 +3,7 @@
 Rectangle.prototype.paint = function(ctx) {
     Shape.prototype.paint.call(this , ctx);
     ctx.fillStyle = this.color;
-    ctx.rect(this.PtX, this.PtY, (this.PtX + this.width),  (this.PtY + this.height));
+    ctx.rect(this.PtX, this.PtY, this.width,   this.height);
     ctx.stroke();
 };
 

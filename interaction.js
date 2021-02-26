@@ -6,32 +6,35 @@ function DnD(canvas, interactor) {
   this.startX;
   this.startY;
   this.endX;
-  this.endY;
+  this.endY ;
   this.pressed;
 
 
 	// Developper les 3 fonctions gérant les événements
   DnD.prototype.Press = function (evt){
-    this.startX = evt.x;
-    this.startY = evt.y;
+    var res = getMousePosition(canvas, evt);
+    this.startX = res.x;
+    this.startY = res.y;
     this.pressed = true;
     console.log("Start : " + this.startX + " : " + this.startY);
-    //interactor.onInteractionStart(this);
-  }
+    interactor.onInteractionStart(this);
+  }.bind(this);
 
   DnD.prototype.Move = function (evt){
     if(this.pressed){
-      this.endX = evt.x;
-      this.endY = evt.y;
-      //interactor.onInteractionUpdate(this);
+      var res = getMousePosition(canvas, evt);
+      this.endX = res.x;
+      this.endY = res.y;
+      interactor.onInteractionUpdate(this);
     }
-  }
+  }.bind(this);
 
   DnD.prototype.Release = function (evt){
+    getMousePosition(canvas, evt);
     this.pressed = false;
     console.log("Stop : " + this.endX + " : " + this.endY);
-    //interactor.onInteractionEnd(this);
-  }
+    interactor.onInteractionEnd(this);
+  }.bind(this);
 
 
 	// Associer les fonctions précédentes aux évènements du canvas.
@@ -39,7 +42,7 @@ function DnD(canvas, interactor) {
   canvas.addEventListener('mousemove', this.Move, false);
   canvas.addEventListener('mouseup', this.Release, false);
 
-};
+}
 
 
 // Place le point de l'événement evt relativement à la position du canvas.
@@ -49,7 +52,7 @@ function getMousePosition(canvas, evt) {
     x: evt.clientX - rect.left,
     y: evt.clientY - rect.top
   };
-};
+}
 
 
 

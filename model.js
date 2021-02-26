@@ -28,7 +28,7 @@ function Line(startX , startY , endX, endY, size , color){
 Line.prototype = new Shape();
 
 function Drawing() {
-    this.listForme = new Array();
+    this.listForme = [];
 
     Drawing.prototype.addShape = function(shape){
         this.listForme.push(shape);

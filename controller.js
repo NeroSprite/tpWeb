@@ -34,20 +34,45 @@ function Pencil(ctx, drawing, canvas) {
 
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
 	this.onInteractionStart = function( myDND ) {
-		this.currLineWidth = document.getElementById('spinnerWidth').value; // taille du trait
-		this.currColour = document.getElementById('colour').value;
 		if(this.currentShape === editingMode.rect ) {
+			this.currentShape = new Rectangle(myDND.startX, myDND.startY, 0, 0, this.currLineWidth, this.currColour)
 			console.log("Start creation of a Rectangle...");
 		}
 		else {
+			this.currentShape = new Line(myDND.startX, myDND.startY, myDND.endX, myDND.endY, this.currLineWidth, this.currColour)
 			console.log("Now we do a Line ...");
 		}
-	}
+	};
+
+	this.onInteractionUpdate = function (myDND) {
+		switch (this.currEditingMode) {
+			case editingMode.rect: {
+				this.currentShape = new Rectangle(myDND.startX,
+					myDND.startY,
+					myDND.endX - myDND.startX,
+					myDND.endY - myDND.startY,
+					this.currLineWidth,
+					this.currColour);
+				break;
+			}
+			case editingMode.line: {
+				this.currentShape = new Line(myDND.startX, myDND.startY, myDND.endX, myDND.endY, this.currLineWidth, this.currColour);
+				break;
+			}
+		}
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		drawing.paint(ctx, canvas);
+		this.currentShape.paint(ctx, canvas);
+	}.bind(this);
 
 
+	this.onInteractionEnd = function (myDND) {
+		console.log("Add new shape to the drawing...")
+		drawing.addShape(this.currentShape);
+		drawing.paint(ctx, canvas);
+	}.bind(this);
 
 
-
-};
+}
 
 
