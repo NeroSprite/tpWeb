@@ -16,18 +16,21 @@ function DnD(canvas, interactor) {
     this.startY = evt.y;
     this.pressed = true;
     console.log("Start : " + this.startX + " : " + this.startY);
+    //interactor.onInteractionStart(this);
   }
 
   DnD.prototype.Move = function (evt){
     if(this.pressed){
       this.endX = evt.x;
       this.endY = evt.y;
+      //interactor.onInteractionUpdate(this);
     }
   }
 
   DnD.prototype.Release = function (evt){
     this.pressed = false;
     console.log("Stop : " + this.endX + " : " + this.endY);
+    //interactor.onInteractionEnd(this);
   }
 
 
