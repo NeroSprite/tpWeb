@@ -16,6 +16,7 @@ function Rectangle(PtX , PtY , width, height , size, color){
     this.width = width;
     this.height = height
 }
+
 Rectangle.prototype = new Shape();
 
 function Line(startX , startY , endX, endY, size , color){
@@ -25,6 +26,7 @@ function Line(startX , startY , endX, endY, size , color){
     this.endX = endX;
     this.endY = endY;
 }
+
 Line.prototype = new Shape();
 
 function Drawing() {
@@ -37,6 +39,4 @@ function Drawing() {
     Drawing.prototype.getShapes = function(){
         return this.listForme;
     }
-
-
 }

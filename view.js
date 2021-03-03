@@ -32,3 +32,7 @@ Drawing.prototype.paint = function(ctx) {
     });
 };
 
+updateShapeList = function () {
+
+}
+

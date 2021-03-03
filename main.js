@@ -19,6 +19,14 @@ canvas.height=600
 // tester également Dessin.
 ////
 
+// Should this function stay on main ? or in controller ?
+function deleteShape(index) {
+    drawing.listForme.splice(index - 1,1);
+    pencil.updateShapeList();
+    drawing.paint(ctx, canvas);
+    console.log("remove : " + index);
+}
+
 // Code final à utiliser pour manipuler Pencil.
 var drawing = new Drawing();
 var pencil = new Pencil(ctx, drawing, canvas);
