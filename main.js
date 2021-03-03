@@ -1,6 +1,6 @@
 
-var canvas = document.getElementById('myCanvas');
-var ctx = canvas.getContext('2d');
+canvas = document.getElementById('myCanvas');
+ctx = canvas.getContext('2d');
 
 canvas.width=800
 canvas.height=600
@@ -28,7 +28,7 @@ function deleteShape(index) {
 }
 
 // Code final à utiliser pour manipuler Pencil.
-var drawing = new Drawing();
-var pencil = new Pencil(ctx, drawing, canvas);
+drawing = new Drawing();
+pencil = new Pencil(ctx, drawing, canvas);
 drawing.paint(ctx, canvas);
 

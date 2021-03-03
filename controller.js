@@ -1,5 +1,5 @@
 
-var editingMode = { rect: 0, line: 1 };
+editingMode = { rect: 0, line: 1 };
 
 function Pencil(ctx, drawing, canvas) {
 	this.currEditingMode = editingMode.line;
@@ -34,23 +34,22 @@ function Pencil(ctx, drawing, canvas) {
 
 
 	this.updateShapeList = function() {
-		var listShape = document.getElementById('shapeList');
+		let listShape = document.getElementById('shapeList');
 		console.log(drawing.listForme.length + " shape")
 		listShape.innerHTML = "<ul style=\'font-size:20px\'>";
 		drawing.listForme.forEach( function (shape){
-			var index = drawing.listForme.indexOf(shape) + 1;
+			let index = drawing.listForme.indexOf(shape) + 1;
 			if(shape.width){ // It's a square, a better way to do that ?!
 				//<li style="color:Red" ><span style="color:Black; font-size:12px">1</span></li>
-				console.log(shape.color);
 				listShape.innerHTML += "<li style='color:" + shape.color + ";'> " + index  +
 					" Rect : (" + shape.PtX.toFixed(0) + "," + shape.PtY.toFixed(0) + "), width:" + shape.width + ", height:" + shape.height +
-					"),<button type='button' onclick='deleteShape(" + index + ")'><span class='glyphicon glyphicon-remove-sign'></span></button>" +
+					"   <button type='button' onclick='deleteShape(" + index + ")'><span class='glyphicon glyphicon-remove-sign'></span></button>" +
 					"</li>";
 			}
 			else {
 				listShape.innerHTML += "<li style='color:" + shape.color + ";'> " + index  +
 					" Line : (" + shape.startX.toFixed(0) + "," + shape.startY.toFixed(0) + ")-(" + shape.startX.toFixed(0) + "," + shape.startY.toFixed(0) +
-					"),<button type='button' onclick='deleteShape(" + index + ")'><span class='glyphicon glyphicon-remove-sign'></span></button>" +
+					")   <button type='button' onclick='deleteShape(" + index + ")'><span class='glyphicon glyphicon-remove-sign'></span></button>" +
 					"</li>";
 			}
 
@@ -92,14 +91,12 @@ function Pencil(ctx, drawing, canvas) {
 	}.bind(this);
 
 
-	this.onInteractionEnd = function (myDND) {
+	this.onInteractionEnd = function () {
 		console.log("Add new shape to the drawing...")
 		drawing.addShape(this.currentShape);
 		drawing.paint(ctx, canvas);
 		this.updateShapeList();
 	}.bind(this);
-
-
 }
 
 

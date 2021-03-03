@@ -3,18 +3,20 @@
 // L'interacteur viendra dans un second temps donc ne vous en souciez pas au départ.
 function DnD(canvas, interactor) {
 	// Définir ici les attributs de la 'classe'
-  this.startX;
-  this.startY;
-  this.endX;
-  this.endY ;
-  this.pressed;
+  this.startX = 0;
+  this.startY = 0;
+  this.endX = 0;
+  this.endY = 0;
+  this.pressed = false;
 
 
 	// Developper les 3 fonctions gérant les événements
   DnD.prototype.Press = function (evt){
-    var res = getMousePosition(canvas, evt);
+    let res = getMousePosition(canvas, evt);
     this.startX = res.x;
     this.startY = res.y;
+    this.endX = res.x;
+    this.endY = res.y;
     this.pressed = true;
     console.log("Start : " + this.startX + " : " + this.startY);
     interactor.onInteractionStart(this);
@@ -22,7 +24,7 @@ function DnD(canvas, interactor) {
 
   DnD.prototype.Move = function (evt){
     if(this.pressed){
-      var res = getMousePosition(canvas, evt);
+      let res = getMousePosition(canvas, evt);
       this.endX = res.x;
       this.endY = res.y;
       interactor.onInteractionUpdate(this);
@@ -47,7 +49,7 @@ function DnD(canvas, interactor) {
 
 // Place le point de l'événement evt relativement à la position du canvas.
 function getMousePosition(canvas, evt) {
-  var rect = canvas.getBoundingClientRect();
+  let rect = canvas.getBoundingClientRect();
   return {
     x: evt.clientX - rect.left,
     y: evt.clientY - rect.top
